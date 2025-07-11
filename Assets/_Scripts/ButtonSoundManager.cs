@@ -3,19 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class ButtonSoundManager : MonoBehaviour
 {
-    public static ButtonSoundManager Instance { get; private set; }
     private AudioSource source;
     [Header("References")]
     [SerializeField] private AudioClip clip;
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
         if (!TryGetComponent<AudioSource>(out source))
         {
             Debug.LogError("There is no AuidoSource in this gameobject");

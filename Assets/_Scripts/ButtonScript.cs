@@ -3,13 +3,22 @@ using UnityEngine;
 public class ButtonScript : MonoBehaviour
 {
     private int clickAmount;
+    private ButtonClickCounter clickManager;
+    private ButtonSoundManager soundManager;
+
+
+    void Awake()
+    {
+        clickManager = ServiceLocator.GetService<ButtonClickCounter>();
+        soundManager = ServiceLocator.GetService<ButtonSoundManager>();
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             clickAmount++;
-            ButtonClickCounter.Instance.SetClickText(clickAmount);
-            ButtonSoundManager.Instance.PlayButtonSound();
+            clickManager.SetClickText(clickAmount);
+            soundManager.PlayButtonSound();
         }
     }
 }
