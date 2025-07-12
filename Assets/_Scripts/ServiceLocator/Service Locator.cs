@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Ensures that this class is initialized early in Unity's execution order.
+// [DefaultExecutionOrder(-1)] doesn't apply to static classes, but it's still here for clarity.
 [DefaultExecutionOrder(-1)]
 public static class ServiceLocator
 {
     private static readonly Dictionary<Type, object> services = new();
-
     public static void RegisterService<T>(T service) where T : class
     {
         var type = typeof(T);
